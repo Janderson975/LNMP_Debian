@@ -1,1 +1,2 @@
-A Debian image testing a user's ability to secure a linux image hosting a website using Nginx, MangoDB, and PHP8.1.
+A Debian image testing a user's ability to secure a linux image hosting a website using Nginx, PostgreSQL, and PHP8.1.
+Additional configuation of Samba of network connectivity is required
