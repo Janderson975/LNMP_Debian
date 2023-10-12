@@ -15,7 +15,7 @@ Nginx:
 PostgreSQL:
   In postgressql.conf
   Port 8080 (in readme)
-  Turn ssl on
+  Turn ssl off
   In conf.d
   Delete envvars
   Delete ports.conf
