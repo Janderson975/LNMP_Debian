@@ -1,5 +1,4 @@
 #!/bin/bash
-#if (! eval cat /etc/nginx/nginx.conf | grep server_tokens | grep off) 
 score_report="/home/cyber/Desktop/ScoreReport.html"
 
 function check()
@@ -69,6 +68,7 @@ do
         check '! cat /var/spool/cron/crontabs/Matthew | grep "nc"' 'vuln39' '57s' 'Netcat backdoor removed'
         check '! cat /etc/group | grep "Ginger"' 'vuln40' '58s' 'Unauthorized user removed'
         check '! ls -a /etc/skel | grep ".back"' 'vuln41' '59s' 'Skel backdoor removed'
+done
         
         
         
