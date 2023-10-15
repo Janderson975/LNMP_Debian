@@ -22,7 +22,8 @@
 		<h2>Scenario</h2><br>
 		<p>You have been brought on by Jack on behalf of the Linux portion of the Leadership Team to configure their machine hosting a website pertaining to next year's LT.</p>
 		<p>You have been given an admin account named cyber. You need not change his password. Your goal is to properly configure the critical services hosting the website as well as securing the rest of the system.</p>
-		<p>Matthew is having trouble configuring Samba correctly and none of the other lab managers help him. You have been given the additional task of fixing the conf file for Samba.</p>
+		<p>There was a recent breach in the system as an unauthorized user obtained escalated privileges. Please disallow them from accessing the Nginx server by blacklisting all connections from 188.199.10.0/24. For addition protection, whitelist the ipaddress 192.168.10.0. This should be the address of the current system. If it not, please change it.</p>
+		<p>Additionally, Matthew is having trouble configuring Samba correctly and none of the other lab managers help him. You have been given the additional task of fixing the conf file for Samba.</p>
 		<p>Root's password is the same as yours. Google is your friend. Good luck!</p>
 		
 	</div>
@@ -30,7 +31,9 @@
 	<div class="services">
 		<h2>Services and Applications</h2><br>
 		<p>Nginx</p><br>
+		<p>Port 443</p><br>
 		<p>PostgreSQL postgres:no password</p><br>
+		<p>Port 8080p>
 		<p>PHP 8.2</p><br>
 		<p>Samba</p><br>
 		
