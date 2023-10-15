@@ -53,7 +53,7 @@ do
         check 'cat /etc/php/8.2/fpm/php.ini | grep "report_memleaks = On"' 'vuln28' '46s' 'PHP reports memleaks'
         check 'cat /etc/php/8.2/fpm/php.ini | grep "auto_globals_jit = On"' 'vuln29' '47s' 'PHP globals are deleted after use'
         check 'cat /etc/php/8.2/fpm/php.ini | grep "enable_dl = Of"' 'vuln30' '48s' 'PHP extensions disabled'
-        check '! ls /etc/php/8.2/fpm/conf.d | grep "passwords" 'vuln31' '49s' 'File containing a password removed'
+        check '! ls /etc/php/8.2/fpm/conf.d | grep "passwords"' 'vuln31' '49s' 'File containing a password removed'
 
         #Samba
         check 'cat /etc/samba/smb.conf | grep "obey pam restrictions = yes"' 'vuln32' '50s' 'Samba uses pam'
