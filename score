@@ -5,11 +5,11 @@ function check()
 {
         if ( eval $1 ); then
                 if (cat $score_report | grep $2); then
-                        sed -i '$3/$2/$4' $score_report
+                        sed -i "$3/$2/$4/g" $score_report
                 fi
         elif ( ! eval $1 ); then 
-                if (cat $score_report | grep $4); then
-                        sed -i '$3/$4/$2' $score_report
+                if (! cat $score_report | "grep $2</p>"); then
+                        sed -i "$3/$4/$2/g" $score_report
                 fi
         fi
 }
@@ -37,8 +37,8 @@ do
         #PostgreSQL
         check 'cat /etc/postgresql/15/main/postgresql.conf | grep "port = 8080"' 'vuln15' '33s' 'Postgres set to run on the correct port'
         check 'cat /etc/postgresql/15/main/postgresql.conf | grep "ssl = on"' 'vuln16' '34s' 'Postgres ssl enabled'
-        check 'ls /etc/postgresql/15/main/conf.d | grep "envvars.conf"' 'vuln17' '35s' 'Deleted bad Postgres config file'
-        check 'ls /etc/postgresql/15/main/conf.d | grep "ports.conf"' 'vuln18' '36s' 'Deleted bad Postgres config file'
+        check '! ls /etc/postgresql/15/main/conf.d | grep "envvars.conf"' 'vuln17' '35s' 'Deleted bad Postgres config file'
+        check '! ls /etc/postgresql/15/main/conf.d | grep "ports.conf"' 'vuln18' '36s' 'Deleted bad Postgres config file'
         check '! cat /etc/postgresql/15/main/pg_hba.conf | grep "local" | grep "postgres" | grep "trust"' 'vuln19' '37s' 'Postgres requires authentication'
 
         #PHP 8.2
@@ -49,7 +49,7 @@ do
         check 'cat /etc/php/8.2/fpm/php.ini | grep "max_execution_time = 30"' 'vuln24' '42s' 'PHP max execution time set to 30'
         check 'cat /etc/php/8.2/fpm/php.ini | grep "input = 30"' 'vuln25' '43s' 'PHP max input time set to 60'
         check 'cat /etc/php/8.2/fpm/php.ini | grep "log_errors = On"' 'vuln26' '44s' 'PHP logs errors'
-        check 'cat /etc/php/8.2/fpm/php.ini | grep "ignore_repeated_errors = On"' 'vuln27' '45s' 'PHP does not ignore repeated errors'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "ignore_repeated_errors = Off"' 'vuln27' '45s' 'PHP does not ignore repeated errors'
         check 'cat /etc/php/8.2/fpm/php.ini | grep "report_memleaks = On"' 'vuln28' '46s' 'PHP reports memleaks'
         check 'cat /etc/php/8.2/fpm/php.ini | grep "auto_globals_jit = On"' 'vuln29' '47s' 'PHP globals are deleted after use'
         check 'cat /etc/php/8.2/fpm/php.ini | grep "enable_dl = Of"' 'vuln30' '48s' 'PHP extensions disabled'
