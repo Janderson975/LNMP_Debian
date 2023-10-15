@@ -36,6 +36,33 @@ do
         check 'cat /etc/nginx/sites-available/default | grep "listen 443"' 'vuln14' '32s' 'Nginx set to run on correct port'
 
         #PostgreSQL
+        check 'cat /etc/postgresql/15/main/postgresql.conf | grep "port = 8080"' 'vuln15' '33s' 'Postgres set to run on the correct port'
+        check 'cat /etc/postgresql/15/main/postgresql.conf | grep "ssl = on"' 'vuln16' '34s' 'Postgres ssl enabled'
+        check 'ls /etc/postgresql/15/main/conf.d | grep "envvars.conf"' 'vuln17' '35s' 'Deleted bad Postgres config file'
+        check 'ls /etc/postgresql/15/main/conf.d | grep "ports.conf"' 'vuln18' '36s' 'Deleted bad Postgres config file'
+        check '! cat /etc/postgresql/15/main/pg_hba.conf | grep "local" | grep "postgres" | grep "trust"' 'vuln19' '37s' 'Postgres requires authentication'
 
+        #PHP 8.2
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "expose_php = Off"' 'vuln20' '38s' 'Expose php turned off'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "short_open_tag = Off"' 'vuln21' '39s' 'PHP short tags turned off'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "asp_tags = Off"' 'vuln22' '40s' 'PHP asp tags turned off'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "implicit_flush = Off"' 'vuln23' '41s' 'PHP implicit flush turned off'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "max_execution_time = 30"' 'vuln24' '42s' 'PHP max execution time set to 30'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "input = 30"' 'vuln25' '43s' 'PHP max input time set to 60'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "log_errors = On"' 'vuln26' '44s' 'PHP logs errors'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "ignore_repeated_errors = On"' 'vuln27' '45s' 'PHP does not ignore repeated errors'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "report_memleaks = On"' 'vuln28' '46s' 'PHP reports memleaks'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "auto_globals_jit = On"' 'vuln29' '47s' 'PHP globals are deleted after use'
+        check 'cat /etc/php/8.2/fpm/php.ini | grep "enable_dl = Of"' 'vuln30' '48s' 'PHP extensions disabled'
+        check '! ls /etc/php/8.2/fpm/conf.d | grep "passwords" 'vuln31' '49s' 'File containing a password removed'
+
+        #Samba
+        check 'cat /etc/samba/smb.conf | grep "obey pam restrictions = yes"' 'vuln32' '50s' 'Samba uses pam'
+        check '! cat /etc/samba/smb.conf | grep "browseable = yes"' 'vuln33' '51s' 'Samba: browseable set to no'
+        check 'cat /etc/samba/smb.conf | grep "map to guest = bad user"' 'vuln34' '52s' 'Correct Samba guest configuration'
+
+        #BaseOS
+        check 'ufw status | grep "active"' 'vuln35' '53s' 'Firewall enabled'
+        check '! dpkg -l | grep "hydra"' 'vuln36' '54s' 'Hydra removed'
         
 
