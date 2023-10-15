@@ -5,7 +5,7 @@ score_report="/home/cyber/Desktop/ScoreReport.html"
 function check()
 {
         if ( eval $1 ); then
-                if (cat $score_report | grep $temp); then
+                if (cat $score_report | grep $2); then
                         sed -i '$3/$2/$4' $score_report
                 fi
         elif ( ! eval $1 ); then 
@@ -14,3 +14,28 @@ function check()
                 fi
         fi
 }
+
+while true
+do
+        #Forensics
+        check 'cat /home/cyber/Desktop/Forensics_1 | grep "L0y0l@B3@t$H@ll"' 'vuln1' '19s' 'Forensics 1 Correct'
+        check 'cat /home/cyber/Desktop/Forensics_2 | grep "1.22.1-9"' 'vuln2' '20s' 'Forensics 2 Correct'
+        check 'cat /home/cyber/Desktop/Forensics_3 | grep "password"' 'vuln3' '21s' 'Forensics 3 Correct'
+
+        #Ngnix
+        check 'cat /etc/nginx/nginx.conf | grep "server_token on"' 'vuln4' '22s' 'Disabled Server Tokens'
+        check 'cat /etc/nginx/nginx.conf | grep "ssl_protocols" | grep "1.2" | grep "1.3"' 'vuln5' '23s' 'Ngnix uses tls 1.2 and 1.3'
+        check '! cat /etc/nginx/nginx.conf | grep "client_body_timeout 0s"' 'vuln6' '24s' 'None 0 client timeout'
+        check 'cat /etc/nginx/nginx.conf | grep "allow 192.168.10.0"' 'vuln7' '25s' 'Correct ip whitelist'
+        check 'cat /etc/nginx/nginx.conf | grep "deny 188.199.10.0/24"' 'vuln8' '26s' 'Correct ip blacklist'
+        check 'cat /etc/nginx/nginx.conf | grep "net.ipv4.conf.all.rp_filter = 1"' 'vuln9' '27s' 'sysctl protection 1'
+        check 'cat /etc/nginx/nginx.conf | grep "net.ipv4.tcp_syncookies = 1"' 'vuln10' '28s' 'sysctl protection 2'
+        check 'cat /etc/nginx/nginx.conf | grep "user nginx"' 'vuln11' '29s' 'Correct Nginx user'
+        check '! cat /etc/nginx/nginx.conf | grep "#pid"' 'vuln12' '30s' 'set pid_file'
+        check 'cat /etc/nginx/nginx.conf | grep "error_log /var/log/nginx/error.log"' 'vuln13' '31s' 'correct error logging'
+        check 'cat /etc/nginx/sites-available/default | grep "listen 443"' 'vuln14' '32s' 'Nginx set to run on correct port'
+
+        #PostgreSQL
+
+        
+
