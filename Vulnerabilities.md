@@ -2,8 +2,7 @@ Nginx:
   In nginx.conf
   Disabled sevrer tokens
   tls 1.2 and 1.3
-  Client timeout
-  Request size limits
+  Ip blacklist (in readme)
   Ip whitelist (in readme)
   Enabled sysctl protection x2
   Change user to nginx
