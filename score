@@ -1,0 +1,16 @@
+#!/bin/bash
+#if (! eval cat /etc/nginx/nginx.conf | grep server_tokens | grep off) 
+score_report="/home/cyber/Desktop/ScoreReport.html"
+
+function check()
+{
+        if ( eval $1 ); then
+                if (cat $score_report | grep $temp); then
+                        sed -i '$3/$2/$4' $score_report
+                fi
+        elif ( ! eval $1 ); then 
+                if (cat $score_report | grep $4); then
+                        sed -i '$3/$4/$2' $score_report
+                fi
+        fi
+}
