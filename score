@@ -64,5 +64,14 @@ do
         #BaseOS
         check 'ufw status | grep "active"' 'vuln35' '53s' 'Firewall enabled'
         check '! dpkg -l | grep "hydra"' 'vuln36' '54s' 'Hydra removed'
+        check '! dpkg -l | grep "hashcat"' 'vuln37' '55s' 'Hashcat removed'
+        check 'cat /etc/apt/sources.list | grep "bookworm"' 'vuln38' '56s' 'Correct apt repository'
+        check '! cat /var/spool/cron/crontabs/Matthew | grep "nc"' 'vuln39' '57s' 'Netcat backdoor removed'
+        check '! cat /etc/group | grep "Ginger"' 'vuln40' '58s' 'Unauthorized user removed'
+        check '! ls -a /etc/skel | grep ".back"' 'vuln41' '59s' 'Skel backdoor removed'
+        
+        
+        
+        
         
 
