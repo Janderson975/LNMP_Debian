@@ -19,7 +19,7 @@ do
         #Forensics
         check 'cat /home/cyber/Desktop/Forensics_1 | grep "L0y0l@B3@t$H@ll"' 'vuln1' '19s' 'Forensics 1 Correct'
         check 'cat /home/cyber/Desktop/Forensics_2 | grep "1.22.1-9"' 'vuln2' '20s' 'Forensics 2 Correct'
-        check 'cat /home/cyber/Desktop/Forensics_3 | grep "password"' 'vuln3' '21s' 'Forensics 3 Correct'
+        check 'cat /home/cyber/Desktop/Forensics_3 | grep "Answer: password"' 'vuln3' '21s' 'Forensics 3 Correct'
 
         #Ngnix
         check 'cat /etc/nginx/nginx.conf | grep "server_token on"' 'vuln4' '22s' 'Disabled Server Tokens'
